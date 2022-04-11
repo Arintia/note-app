@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import check from './assets/img/check.svg';
+import ColorButton from './components/ColorButton/ColorButton';
 import { setColor } from './redux/notes/NotesSlice';
+import { colors } from './util/colors';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,41 +27,9 @@ function App() {
         </h2>
         <p>Please select a color for your note down below.</p>
         <div className="color-container">
-          <button 
-            className="color"
-            style={{background: "#34568b"}}
-            onClick={handleColor}
-            data-btnid="0"
-          >
-          </button>
-          <button 
-            className="color"
-            style={{background: "#FF6F61"}}
-            onClick={handleColor}
-            data-btnid="1"
-          >
-          </button>
-          <button 
-            className="color"
-            style={{background: "#ff9de2"}}
-            onClick={handleColor}
-            data-btnid="2"
-          >
-          </button>
-          <button 
-            className="color"
-            style={{background: "#88B04B"}}
-            onClick={handleColor}
-            data-btnid="3"
-          >
-          </button>
-          <button 
-            className="color"
-            style={{background: "#ffe477"}}
-            onClick={handleColor}
-            data-btnid="4"
-          >
-          </button>
+          {colors.map(color => 
+            <ColorButton bgColor={color.bgColor} handleColor={handleColor} id={color.id} />  
+          )}
         </div>
         <h6 className="version">v1.0.0</h6>
       </aside>
