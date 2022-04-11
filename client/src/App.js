@@ -6,6 +6,7 @@ import ColorButton from './components/ColorButton/ColorButton';
 import { setColor } from './redux/notes/NotesSlice';
 import { colors } from './util/colors';
 
+
 function App() {
   const dispatch = useDispatch();
   const colorBtn = useSelector(state => state.notes.color);
@@ -33,7 +34,20 @@ function App() {
         </div>
         <h6 className="version">v1.0.0</h6>
       </aside>
-
+      <main>
+          <form>
+            <div className="note-input-container">
+              <div className="note-input-box">
+                <div className="search-container">
+                  <img src={search} alt="search" className="search-btn" />
+                  <input type="text" className="search-input" placeholder='Search' />
+                </div>
+                <textarea name="note-input" id="note-input" className="note-input">Write your note here...</textarea>
+                <button className="submit-btn" type="submit">Gönder</button>
+              </div>
+            </div>
+          </form>
+      </main>            
       <footer>
         <p>Developed by <a href="https://github.com/Arintia" target="_blank" rel="noopener noreferrer">Yiğit Atak</a></p>
       </footer>

@@ -9,6 +9,7 @@
   height: 100vh;
   width: 20%;
   background-color: #DECBB7;
+  top: 0;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -64,6 +65,77 @@ footer {
 a {
   text-decoration: none;
   color: #8F857D;
+}
+
+.note-input-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.note-input-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20%;
+  width: 375px;
+  height: 275px;
+  background: #F7F0F5;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-top: 25px;
+}
+
+.search-container {
+  margin-top: 12px;
+  position: relative;
+  width: 325px;
+}
+
+.search-input {
+  margin-left: 10px;
+  width: inherit;
+  height: 20px;
+  border-radius: 7px;
+  border: 1px solid #3a3a3a;
+  padding: 8px 0;
+  padding-left: 25px;
+}
+
+.search-btn {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  height: 16px;
+  width: auto;
+}
+
+textarea {
+  margin: 12px 0;
+  margin-left: 10px;
+  width: 334px;
+  padding: 8px;
+  border-radius: 7px;
+  border: 1px solid #3a3a3a;
+  resize: none;
+  height: 140px
+  
+}
+
+.submit-btn {
+  margin: 6px auto;
+  width: 100px;
+  height: 50px;
+  border-radius: 7px;
+  background: #177437;
+  color: #fff;
+  border: 1px solid #3a3a3a;
+}
+
+.submit-btn:hover {
+  background: #1d8541;
+  cursor: pointer;
+  transition: background 0.325s;
 }
 
 @media only screen and (max-width: 1225px) {
