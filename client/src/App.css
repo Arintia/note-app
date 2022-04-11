@@ -56,7 +56,7 @@ footer {
   height: 15%;
   width: calc(100vw - 20%);
   background: #F7F0F5;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   color: #000;
   left: 20%;

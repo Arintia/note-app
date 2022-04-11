@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import check from './assets/img/check.svg';
+import search from './assets/img/search.png';
 import ColorButton from './components/ColorButton/ColorButton';
 import { setColor } from './redux/notes/NotesSlice';
 import { colors } from './util/colors';
