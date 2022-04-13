@@ -6,17 +6,33 @@ import { addNote } from '../../redux/notes/NotesSlice';
 
 function NoteForm({searchKey, setSearchKey}) {
     const dispatch = useDispatch();
+    /**
+     * noteInput is a state that stores the text body of the note to be sent over to NotesSlice.
+     */
     const [noteInput, setNoteInput] = useState("");
+    /**
+     * length is a state that stores the length of noteInput. It's used to keep track of the current character count.
+     */
     const [length, setLength] = useState(0);
+    /**
+     * charCountBtn is the node for the character counter. This is used to manipulate the style of the character counter when it
+     * reaches certain thresholds.
+     */
     const charCountBtn = document.getElementsByClassName("character-counter")[0];
 
     const handleSubmit = e => {
         e.preventDefault();
-        if(!noteInput) return;
-        dispatch(addNote({ text: noteInput }));
-        setNoteInput("");
+        if(!noteInput) return; // return if the input is empty
+        dispatch(addNote({ text: noteInput })); // dispatch addNote and set state. note body is sent as an object.
+        setNoteInput(""); // reset input.
     }
 
+    /**
+     * useEffect hook is called every time noteInput changes. In simpler words, this hook is called every time someone types
+     * or deletes something. This hook handles the manipulation of colors as the user types or deletes something.
+     * @param nearlimit - near-limit class is for when the character length is between 200 and 255, both excluded.
+     * @param atlimit - at-limit class is for when the user has reached the max allowed characters.(255)
+     */
     useEffect(() => {
         setLength(noteInput.length);
         if(charCountBtn) {
