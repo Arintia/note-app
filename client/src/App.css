@@ -2,6 +2,7 @@
   width: 100vw;
   height: 100vh;
   min-height: 100%;
+  min-width: 100%;
 }
 
 main {
@@ -216,8 +217,34 @@ textarea {
 
 @media only screen and (max-width: 1225px) {
   .side-bar {
-    height: 35%;
+    height: 45vh;
     width: 100vw;
+  }
+
+  .notes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+    width: 280px;
+    margin-bottom: 45%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .note {
+    min-width: 35%;
+    flex-basis: 100%;
+    width: 35%;
+  }
+
+  .note-input-container {
+    margin-top: 45vh;
+  }
+
+  .note-input-box {
+    margin-left: 0;
   }
 
   .version {

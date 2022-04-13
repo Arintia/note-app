@@ -6,15 +6,15 @@ import { addNote } from '../../redux/notes/NotesSlice';
 
 function NoteForm({searchKey, setSearchKey}) {
     const dispatch = useDispatch();
-    const [noteInput, setNoteInput] = useState("Write your note here...");
+    const [noteInput, setNoteInput] = useState("");
     const [length, setLength] = useState(0);
     const charCountBtn = document.getElementsByClassName("character-counter")[0];
 
     const handleSubmit = e => {
         e.preventDefault();
-        if(noteInput === "Write your note here..." || !noteInput) return;
+        if(!noteInput) return;
         dispatch(addNote({ text: noteInput }));
-        setNoteInput("Write your note here...");
+        setNoteInput("");
     }
 
     useEffect(() => {
@@ -47,6 +47,7 @@ function NoteForm({searchKey, setSearchKey}) {
                     <span className="character-counter">{length}/255</span>
                     <textarea 
                         name="note-input" 
+                        placeholder="Write your note here..."
                         id="note-input" 
                         className="note-input"
                         maxLength={255}
