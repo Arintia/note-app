@@ -1,19 +1,34 @@
 import React from 'react';
+import { useDrop } from 'react-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import check from './assets/img/check.svg';
-import search from './assets/img/search.png';
+import trash from './assets/img/trash.svg';
 import ColorButton from './components/ColorButton/ColorButton';
-import { setColor } from './redux/notes/NotesSlice';
+import Note from './components/Note/Note';
+import NoteForm from './components/NoteForm/NoteForm';
+import { setColor, removeNote } from './redux/notes/NotesSlice';
 import { colors } from './util/colors';
-
 
 function App() {
   const dispatch = useDispatch();
   const colorBtn = useSelector(state => state.notes.color);
+  const notes = useSelector(state => state.notes.items);
+
+  const [{ isOver }, deleteRef] = useDrop(() => ({
+    accept: "note",
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver()
+    })
+  }));
+
+  const deleteNote = id => {
+    console.log({id});
+    dispatch(removeNote(id));
+  }
 
   const handleColor = e => {
-    if(colorBtn!== null) {
+    if(colorBtn !== null) {
       const oldBtn = document.querySelector(`[data-btnid="${colorBtn}"]`);
       oldBtn.innerHTML = "";
     }
@@ -22,37 +37,42 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <aside className="side-bar">
-        <h2 className="app-header">
-          Note App
-        </h2>
-        <p>Please select a color for your note down below.</p>
-        <div className="color-container">
-          {colors.map(color => 
-            <ColorButton bgColor={color.bgColor} handleColor={handleColor} id={color.id} />  
-          )}
-        </div>
-        <h6 className="version">v1.0.0</h6>
-      </aside>
-      <main>
-          <form>
+      <div className="app-container">
+        <aside className="side-bar">
+          <h2 className="app-header">
+            Note App
+          </h2>
+          <p>Please select a color for your note down below.</p>
+          <div className="color-container">
+            {colors.map(color => 
+              <ColorButton key={color.id} bgColor={color.bgColor} handleColor={handleColor} id={color.id} />  
+            )}
+          </div>
+          <h6 className="version">v1.0.0</h6>
+        </aside>
+          <main>  
             <div className="note-input-container">
-              <div className="note-input-box">
-                <div className="search-container">
-                  <img src={search} alt="search" className="search-btn" />
-                  <input type="text" className="search-input" placeholder='Search' />
-                </div>
-                <textarea name="note-input" id="note-input" className="note-input">Write your note here...</textarea>
-                <button className="submit-btn" type="submit">Gönder</button>
-              </div>
+              <NoteForm />  
             </div>
-          </form>
-      </main>            
-      <footer>
-        <p>Developed by <a href="https://github.com/Arintia" target="_blank" rel="noopener noreferrer">Yiğit Atak</a></p>
-      </footer>
-    </div>
+            <section className="notes-container">
+              {notes.map(note => 
+                <Note 
+                  key={note.id} 
+                  id={note.id}
+                  deleteNote={deleteNote}
+                  bgColor={note.bgColor} 
+                  text={note.text} 
+                /> 
+              )}
+            </section>
+            <aside className="delete-btn">
+              <button><img src={trash} alt="delete" ref={deleteRef} /></button>
+            </aside>
+          </main>          
+        <footer>
+          <p>Developed by <a href="https://github.com/Arintia" target="_blank" rel="noopener noreferrer">Yigit Atak</a></p>
+        </footer>
+      </div>
   );
 }
 
