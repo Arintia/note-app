@@ -8,6 +8,7 @@ function NoteForm() {
     const dispatch = useDispatch();
     const [noteInput, setNoteInput] = useState("Write your note here...");
     const [length, setLength] = useState(0);
+    const charCountBtn = document.getElementsByClassName("character-counter")[0];
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -18,6 +19,21 @@ function NoteForm() {
 
     useEffect(() => {
         setLength(noteInput.length);
+        if(charCountBtn) {
+            if(noteInput.length > 200 && noteInput.length < 255 && !charCountBtn.classList.contains("near-limit")) {
+                charCountBtn.classList.add("near-limit");
+            }
+            else if(noteInput.length > 200 && noteInput.length < 255 && charCountBtn.classList.contains("at-limit")) {
+                charCountBtn.classList.remove("at-limit");
+            }
+            else if(noteInput.length === 255 && !charCountBtn.classList.contains("at-limit")) {
+                charCountBtn.classList.add("at-limit");
+            } 
+            else if(noteInput.length < 200 && (charCountBtn.classList.contains("near-limit") || charCountBtn.classList.contains("at-limit"))) {
+                charCountBtn.classList.remove("near-limit");
+                charCountBtn.classList.remove("at-limit");
+            }
+        }
     }, [noteInput])
 
     return (

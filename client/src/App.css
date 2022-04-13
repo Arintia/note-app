@@ -204,6 +204,16 @@ textarea {
   transition: all .2s;
 }
 
+.near-limit {
+  font-weight: 700;
+  color: #ffc107; 
+}
+
+.at-limit {
+  font-weight: 700;
+  color: #dc3545;
+}
+
 @media only screen and (max-width: 1225px) {
   .side-bar {
     height: 35%;
