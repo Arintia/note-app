@@ -23,7 +23,6 @@ function App() {
   }));
 
   const deleteNote = id => {
-    console.log({id});
     dispatch(removeNote(id));
   }
 

@@ -9,7 +9,6 @@ function Note({bgColor, text, deleteNote, id}) {
     end: (note, monitor) => {
       const dropResult = monitor.getDropResult();
       if(note && dropResult) {
-        console.log(monitor.item);
         deleteNote(note);
       }
     },
