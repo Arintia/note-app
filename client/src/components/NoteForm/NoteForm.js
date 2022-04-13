@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import search from '../../assets/img/search.png';
 import { addNote } from '../../redux/notes/NotesSlice';
 
-function NoteForm() {
+function NoteForm({searchKey, setSearchKey}) {
     const dispatch = useDispatch();
     const [noteInput, setNoteInput] = useState("Write your note here...");
     const [length, setLength] = useState(0);
@@ -41,7 +41,7 @@ function NoteForm() {
             <div className="note-input-box">
                 <div className="search-container">
                     <img src={search} alt="search" className="search-btn" />
-                    <input type="text" className="search-input" placeholder='Search' />
+                    <input type="text" value={searchKey} onChange={e => setSearchKey(e.target.value)} className="search-input" placeholder='Search' />
                 </div>
                 <div className="input-container">
                     <span className="character-counter">{length}/255</span>

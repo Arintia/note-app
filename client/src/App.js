@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
@@ -14,6 +14,7 @@ function App() {
   const dispatch = useDispatch();
   const colorBtn = useSelector(state => state.notes.color);
   const notes = useSelector(state => state.notes.items);
+  const [searchKey, setSearchKey] = useState("");
 
   const [{ isOver }, deleteRef] = useDrop(() => ({
     accept: "note",
@@ -51,10 +52,11 @@ function App() {
         </aside>
           <main>  
             <div className="note-input-container">
-              <NoteForm />  
+              <NoteForm searchKey={searchKey} setSearchKey={setSearchKey} />  
             </div>
             <section className="notes-container">
-              {notes.map(note => 
+              {notes.map(note =>
+              note.text.includes(searchKey) && 
                 <Note 
                   key={note.id} 
                   id={note.id}
