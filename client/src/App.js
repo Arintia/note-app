@@ -12,10 +12,25 @@ import { colors } from './util/colors';
 
 function App() {
   const dispatch = useDispatch();
+  /** 
+  * color state stores the id(number) of the button that's selected as the background color
+  */
   const colorBtn = useSelector(state => state.notes.color);
+  /**
+   * items state is an array of objects. 
+   * It has 3 properties.
+   * @param {Number} id - Unique ID for the object. This is generated automatically using uid.
+   * @param {String} text - Body of the note. This is passed to NotesSlice as the payload.
+   * @param {Number} color - This is a state. Refer to colorBtn comment for further information. 
+   */
   const notes = useSelector(state => state.notes.items);
+  // This state is passed onto NoteForm.js for note filtering. 
   const [searchKey, setSearchKey] = useState("");
 
+  /**
+   * useDrop is a hook from react-dnd.
+   * You can specify what types of data items drop operation will accept. 
+   */
   const [{ isOver }, deleteRef] = useDrop(() => ({
     accept: "note",
     collect: (monitor) => ({
@@ -23,15 +38,27 @@ function App() {
     })
   }));
 
+  /**
+   * deleteNote is a custom method for handling drag-and-drop.
+   * Drag-and-drop results in the deletion of a note. 
+   * removeNote is dispatched with id as the payload. Removal is handled within the slice.
+   * @param {*} id - ID of the note to be removed from the items state.
+   */
   const deleteNote = id => {
     dispatch(removeNote(id));
   }
 
+
   const handleColor = e => {
+    /**
+     * If a color button is already selected, we need to remove the "tick mark" from it.
+     *  @param {Number} btnid - This is assigned while looping through the item state array with the unique ID(notes.id).
+     */
     if(colorBtn !== null) {
       const oldBtn = document.querySelector(`[data-btnid="${colorBtn}"]`);
       oldBtn.innerHTML = "";
     }
+    // Add the "tick mark" to the new color and set the state.
     e.target.innerHTML = `<img src=${check} alt="checked" />`;
     dispatch(setColor(e.target.dataset.btnid));
   }

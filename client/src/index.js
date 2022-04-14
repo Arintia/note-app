@@ -10,6 +10,7 @@ import { store } from './redux/store';
 const root = document.getElementById("root");
 const container = ReactDOMClient.createRoot(root);
 
+// Need to wrap element around DndProvider component to use the drag-and-drop feature.
 container.render(
   <Provider store={store}>
     <DndProvider backend={HTML5Backend}>

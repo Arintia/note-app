@@ -1,3 +1,12 @@
+/**
+ * The following code contains the utility colors array for the note app.
+ * You can simply add a new color to the array if you'd like to add a new color.
+ * You can also simply just edit the value of the keys if you're unhappy with any of them.
+ * @param {String} id - Unique ID for the color. 
+ * @param {String} bgColor - Color code for the background of notes. You can use any format like rgba etc. as long as it's a string.
+ * @param {String} color - Color code for the text of notes. You can use any format like rgba etc. as long as it's a string.
+ */
+
 export const colors = [
     {
         id: "0",
