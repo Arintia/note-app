@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
@@ -7,7 +7,7 @@ import trash from './assets/img/trash.svg';
 import ColorButton from './components/ColorButton/ColorButton';
 import Note from './components/Note/Note';
 import NoteForm from './components/NoteForm/NoteForm';
-import { setColor, removeNote } from './redux/notes/NotesSlice';
+import { setColor, removeNote, setNote } from './redux/notes/NotesSlice';
 import { colors } from './util/colors';
 
 function App() {
@@ -63,6 +63,18 @@ function App() {
     dispatch(setColor(e.target.dataset.btnid));
   }
 
+  /**
+   * This useEffect hook is called to check if localStorage has any note objects.
+   * If it does, the hook dispatches the setNote method to set them to the state.
+   * setNote expects an array of objects, each with 3 properties.
+   */
+  useEffect(() => {
+    const notesInStorage = localStorage.getItem("notes");
+    if(notesInStorage !== null) {
+      dispatch(setNote(JSON.parse(notesInStorage)));
+    }
+  }, [dispatch]);
+
   return (
       <div className="app-container">
         <aside className="side-bar">
@@ -79,7 +91,10 @@ function App() {
         </aside>
           <main>  
             <div className="note-input-container">
-              <NoteForm searchKey={searchKey} setSearchKey={setSearchKey} />  
+              <NoteForm 
+                searchKey={searchKey} 
+                setSearchKey={setSearchKey} 
+              />  
             </div>
             <section className="notes-container">
               {notes.map(note =>
