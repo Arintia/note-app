@@ -29,7 +29,7 @@ You need the following tools for installation:
 5. Happy coding!
 
 ### Usage
-This project can be used to keep notes for yourself. It's easy-to-use and it'll feature a local save soon enough. You can also customize the background of your notes. 
+This project can be used to keep notes for yourself. It's easy-to-use and it saves your notes on your browser. You'll be able to see the same notes as long as you keep using the same browser. You can also customize the background of your notes. 
 
 ### Roadmap
 - [X] Implement localStorage to maintain state across page refresh.
