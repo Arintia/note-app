@@ -23,7 +23,7 @@ function NoteForm({searchKey, setSearchKey}) {
     const handleSubmit = e => {
         e.preventDefault();
         if(!noteInput) return; // return if the input is empty
-        dispatch(addNote({ text: noteInput })); // dispatch addNote and set state. note body is sent as an object.
+        dispatch(addNote({ text: noteInput })); // dispatch addNote and set state. note body is sent as an object.     
         setNoteInput(""); // reset input.
     }
 
@@ -50,7 +50,7 @@ function NoteForm({searchKey, setSearchKey}) {
                 charCountBtn.classList.remove("at-limit");
             }
         }
-    }, [noteInput])
+    }, [noteInput, charCountBtn])
 
     return (
         <form onSubmit={handleSubmit}>

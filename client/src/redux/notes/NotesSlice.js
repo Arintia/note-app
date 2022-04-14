@@ -12,11 +12,21 @@ export const NotesSlice = createSlice({
     reducers: {
         addNote: (state,action) => {
             const { text } = action.payload;
-            state.items.push({id: uid(), text, bgColor: state.color});
+            const newItem = {
+                id: uid(),
+                text,
+                bgColor: state.color
+            };
+            state.items.push(newItem);
+            localStorage.setItem("notes", JSON.stringify(state.items));
+        },
+        setNote: (state,action) => {
+            state.items = action.payload;
         },
         removeNote: (state, action) => {
             const {id} = action.payload;
             state.items = state.items.filter(note => note.id !== id);
+            localStorage.setItem("notes", JSON.stringify(state.items));
         },
         setColor: (state, action) => {
             state.color = action.payload;
@@ -24,5 +34,5 @@ export const NotesSlice = createSlice({
     }
 });
 
-export const { addNote, removeNote, setColor } = NotesSlice.actions;
+export const { addNote, removeNote, setColor, setNote } = NotesSlice.actions;
 export default NotesSlice.reducer;
