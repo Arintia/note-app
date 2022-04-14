@@ -32,7 +32,7 @@ You need the following tools for installation:
 This project can be used to keep notes for yourself. It's easy-to-use and it'll feature a local save soon enough. You can also customize the background of your notes. 
 
 ### Roadmap
-- [ ] Implement localStorage to maintain state across page refresh.
+- [X] Implement localStorage to maintain state across page refresh.
 
 ### Contributing
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
